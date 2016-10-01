@@ -8,6 +8,7 @@
  * 2016.09.02 m.asaoka Ver1.0-03 デバイス情報取得処理統一化
  * 2016.09.03 m.asaoka Ver1.0-04 CSV読み込み処理追加
  * 2016.09.21 m.asaoka Ver1.0-05 マップ上にお店情報、タグ情報追加
+ * 2016.10.01 m.asaoka Ver1.0-06 CSVファイルの非同期処理修正
  */
 
 /* マップ表示デフォルト値 */
@@ -66,6 +67,16 @@ var STORE_KIND_WAGASHI = 2;                  //和菓子屋
 var STORE_KIND_GOODS = 3;                    //おみあげ・グッズ
 var STORE_KIND_OTHER = 4;　　　              //その他
 
+/* インターバル処理 */
+var timerID;
+var retryCount = 0;                          //リトライ回数
+var DEFAULT_INTERVAL_TIME = 1000;            //インターバル時間(msec)
+var DEFAULT_MAX_COUNT_FOR_CSV_LOAD = 10;     //最大読み込み回数（最大10秒）
+
+/* 現在位置 */
+var current_lat = DEFAULT_LAT;  //緯度
+var current_lng = DEFAULT_LNG;  //経度
+
 //---------------------------
 // 初期処理
 //---------------------------
@@ -80,17 +91,37 @@ function OnStartUp()
    else
    {
       //許可されていないので、デフォルト値（金沢駅近辺）を中心にマップを表示
-　　　initializeMaps(DEFAULT_LAT, DEFAULT_LNG);
+　　　initializeMaps();
    }     
 }
 //---------------------------
 // Map表示初期化処理
 //---------------------------
-function initializeMaps(current_lat, current_lng)
+function initializeMaps()
 {  
 　　//CSVファイルから各お店の配置情報を取得
  　 getCSV(CSV_FILE_NAME);
-    showGoogleMaps(current_lat, current_lng);
+    
+    //1秒間隔でCSVファイルの取得を待ち合わせをして、表示
+  　timerID = setInterval("onloadMaps()", DEFAULT_INTERVAL_TIME);
+}
+//------------------------------------------
+// マップ読み込み処理
+//------------------------------------------
+function onloadMaps()
+{
+　 //タイムアウトまたはCSVが取得できた場合
+   if(retryCount > DEFAULT_MAX_COUNT_FOR_CSV_LOAD ||
+      csvDataArray.length !=0)
+   {
+    　//インターバル時間をクリア
+      clearInterval(timerID);
+      retryCount = 0;
+　　  //googleMapの読み込みを開始
+　　　showGoogleMaps(current_lat, current_lng);
+      return;
+   }
+   retryCount++;
 }
 //------------------------------------------
 // GoogleMap表示処理
@@ -179,12 +210,12 @@ function SetMapDivStyle(mapdiv)
 function successCallback(position)
 {
    //緯度をセット
-   var current_lat = position.coords.latitude;
+   current_lat = position.coords.latitude;
    //経度をセット
-　 var current_lng = position.coords.longitude;
+　 current_lng = position.coords.longitude;
    
    //マップを初期化
-　 initializeMaps(current_lat, current_lng);
+　 initializeMaps();
 }
 //------------------------------------
 // 取得失敗時の処理
@@ -206,7 +237,7 @@ function errorCallback(error)
     default:
       break;
   }
-  initializeMaps(DEFAULT_LAT, DEFAULT_LNG); 
+  initializeMaps(); 
 }
 //---------------------------------------
 // スマートフォンアクセスかどうか判定する
@@ -229,13 +260,13 @@ function getCSV(csvfileName)
 　　// HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
     var req = new XMLHttpRequest();
     var csvUrl = "data/" + csvfileName;
-　　// アクセスするファイルを指定
-　　req.open("get", csvUrl, true);
+    req.onreadystatechange = function(){
+       if (req.readyState == 4 && req.status == 200) {
+           convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
+       }
+    };
+    req.open("GET", csvUrl, true);
     req.send(null); // HTTPリクエストの発行
-    // レスポンスが返ってきたらconvertCSVtoArray()を呼ぶ	
-    req.onload = function(){
-    		convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
-    }
 }
 //------------------------------------------
 // 読み込んだCSVデータを二次元配列に変換する
