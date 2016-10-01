@@ -259,7 +259,7 @@ function getCSV(csvfileName)
 {
 　　// HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
     var req = new XMLHttpRequest();
-    var csvUrl = "data/" + csvfileName;
+    var csvUrl = "./data/" + csvfileName;
     req.onreadystatechange = function(){
        if (req.readyState == 4 && req.status == 200) {
            convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
