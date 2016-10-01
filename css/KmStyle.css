@@ -1,0 +1,32 @@
+﻿/************************************
+ * MapMenu
+************************************/
+#mapMenuArea
+{
+  position : fixed;
+  bottom : 0px;
+  width : 100%;
+}
+.mapMenuBtn
+{
+　　float : left;
+　　height : 35px;
+　　list-style : none;
+　　padding-top : 8px;
+　　text-align : center;
+　　background : white;
+　　border-right : solid 1px #DCDCDC;
+　　border-top   : solid 1px #DCDCDC;
+}
+#tab1
+{
+　　width : 60%;
+}
+#tab2
+{
+　　width : 20%;
+}
+#tab4
+{
+　　width : 20%;
+}
