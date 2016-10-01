@@ -99,7 +99,7 @@ function OnStartUp()
 //---------------------------
 function initializeMaps()
 {  
-　　//CSVファイルから各お店の配置情報を取得
+    //CSVファイルから各お店の配置情報を取得
  　 getCSV(CSV_FILE_NAME);
     
     //1秒間隔でCSVファイルの取得を待ち合わせをして、表示
@@ -261,10 +261,10 @@ function getCSV(csvfileName)
     var req = new XMLHttpRequest();
     var csvUrl = "./data/" + csvfileName;
     req.onreadystatechange = function(){
-       if (req.readyState == 4 && req.status == 200) {
-           convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
+       if (req.readyState == 4) {  
+       convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
        }
-    };
+    }
     req.open("GET", csvUrl, true);
     req.send(null); // HTTPリクエストの発行
 }
