@@ -2,12 +2,11 @@
 
 開発：ITざっくばらん会・ものづくり部
 
-浅岡 正教(Masanori Asaoka)／開発（View and Back）
-
 ・開発メンバー
-亀本 朗弘(Akihiro Kamemoto)／開発（View）
-石渡 高士(Koji Ishiwatari)／開発(Back)／環境構築
-鍛冶 俊平(Shunpei Kaji)／開発(View)
+浅岡 正教(Masanori Asaoka)／デベロッパー（マップ作成／バックエンド）
+亀本 朗弘(Akihiro Kamemoto)／デベロッパー（画面作成／View部分）
+石渡 高士(Koji Ishiwatari)／デベロッパー（環境構築／ツール作成）
+鍛冶 俊平(Shunpei Kaji)／デベロッパー（画面作成／View部分）
+稲葉 勇人(Yuuto Inaba)／デベロッパー（画面作成／View部分）
 
-・デザイン・コーディネート
-かなざわ娘（Kanazawamusume）
+かなざわ娘（Kanazawamusume）／デザイン／データ提供・作成
