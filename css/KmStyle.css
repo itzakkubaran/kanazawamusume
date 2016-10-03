@@ -1,8 +1,26 @@
-﻿/************************************
- * MapMenu
-************************************/
-#mapMenuArea
-{
+﻿/* Body */
+body{
+  padding : 0px;
+  margin : 0px;
+}
+/* iconTop */
+#iconTop{
+   position : fixed;
+   top : 0;
+   left : 0;
+   width : 100%;
+   background-color : #ffffff;
+   background-image : url("../img/logo.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center center;
+   border : 1px #ffffff solid;
+   padding : 0px;
+   margin : 0px;
+   z-index : 1;
+}
+/* mapMenuArea */
+#mapMenuArea{
   position : fixed;
   bottom : 0px;
   width : 100%;

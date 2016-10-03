@@ -13,28 +13,52 @@
     <link href="./css/KmStyle.css" rel="stylesheet" type="text/css">
     <!-- BootstrapのCSS読み込み -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- RatchetのCSS読み込み -->
+    <link href="./css/ratchet.css" rel="stylesheet" type="text/css">
     <!-- google maps -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbAKj450-wT4MWRPiEP_iqXYnR7DQcgeA"></script>
     <!-- jquery -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="./js/bootstrap.min.js"></script>
+    <!-- RatchetのJS読み込み -->
+    <script type="text/javascript" src="./js/ratchet.js"></script>
     <!-- Script -->
     <script type="text/javascript" src="./script/KmCommonMenu.js"></script>
     <script type="text/javascript" src="./script/KmGoogleMap.js"></script>
 </head>
 
 <body onload="OnStartUp();">
+    <!-- アイコン(ヘッダ) -->
+    <header class="bar bar-nav">
+      <div id="iconTop"></div>
+    </header>
+
     <!-- 地図のキャンパス -->
     <div id="map-canvas">Now loading....</div>
+
     <!-- メニュー -->
-    <div id="mapMenuArea">
-        <a class="btn btn-default" href="#" role="button" style="width=40%;">位置情報</a>
-        <a class="btn btn-default" href="#" role="button" style="width=20%;">絞り込み</a>
-        <a class="btn btn-default" href="#" role="button" style="width=20%;">初期設定</a>
-    </div>
-    <!-- 位置設定メニュー -->
+    <footer class="bar bar-tab">
+        <!-- トグルメニューを実現するために必要な記述 -->
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menunavi">
+                    <span class="sr-only">メニュー</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand">かわいいねマップ</span>
+            </div>
+
+            <div id="menunavi" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">位置情報</a></li>
+                    <li><a href="#">絞り込み</a></li>
+                    <li><a href="#">初期設定</a></li>
+                </ul>
+            </div>
+        </nav>
+    </footer>
 </body>
-
 </html>
-
