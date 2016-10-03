@@ -13,26 +13,34 @@
     <link href="./css/KmStyle.css" rel="stylesheet" type="text/css">
     <!-- BootstrapのCSS読み込み -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- RatchetのCSS読み込み -->
+    <link href="./css/ratchet.css" rel="stylesheet" type="text/css">
     <!-- google maps -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbAKj450-wT4MWRPiEP_iqXYnR7DQcgeA"></script>
     <!-- jquery -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="./js/bootstrap.min.js"></script>
+    <!-- RatchetのJS読み込み -->
+    <script type="text/javascript" src="./js/ratchet.js"></script>
     <!-- Script -->
     <script type="text/javascript" src="./script/KmCommonMenu.js"></script>
     <script type="text/javascript" src="./script/KmGoogleMap.js"></script>
 </head>
 
 <body onload="OnStartUp();">
+    <!-- アイコン(ヘッダ) -->
+    <header class="bar bar-nav">
+      <div id="iconTop"></div>
+    </header>
     <!-- 地図のキャンパス -->
-    <div id="map-canvas">Now loading....</div>
+　　<div id="map-canvas">Now loading....</div>
     <!-- メニュー -->
-    <div id="mapMenuArea">
-        <a class="btn btn-default" href="#" role="button" style="width=40%;">位置情報</a>
-        <a class="btn btn-default" href="#" role="button" style="width=20%;">絞り込み</a>
-        <a class="btn btn-default" href="#" role="button" style="width=20%;">初期設定</a>
-    </div>
+    <nav class="bar bar-tab">
+        <a class="btn btn-default" href="#" role="button">位置情報</a>
+        <a class="btn btn-default" href="#" role="button">絞り込み</a>
+        <a class="btn btn-default" href="#" role="button">初期設定</a>
+    </nav>
     <!-- 位置設定メニュー -->
 </body>
 
