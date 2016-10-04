@@ -187,6 +187,24 @@ function CreateMarker(storeData, latlng, mapObj)
    });
 } 
 //------------------------------------------
+// GoogleMap の高さを取得します.
+//
+// @return GoogleMap の高さ
+//
+// 全体の高さからヘッダとメニューバーを
+// 除いた高さを返します
+//------------------------------------------
+function googleMapHeight()
+{
+   // offset はスクロールバーが表示されないように微調整するために使用されます．
+   var offset        = -3;
+   var headerHeight  = $('#iconTop').height();
+   var menuHeight    = $('#mapMenuArea').height();
+   var windowsHeight = $(window).height();
+   var mapHeight     = windowsHeight - headerHeight - menuHeight + offset;
+  return mapHeight;
+}
+//------------------------------------------
 // GoogleMapの表示スタイルをセットする
 //------------------------------------------
 function SetMapDivStyle(mapdiv)
@@ -194,8 +212,8 @@ function SetMapDivStyle(mapdiv)
    if(mapdiv !=null)
    {      
       mapdiv.style.width = DEFAULT_STYLE_WIDTH;
-      mapdiv.style.height = DEFAULT_STYLE_HEIGHT;
-      //スマートフォンアクセスかどうか判定  
+      mapdiv.style.height = googleMapHeight() + 'px';
+      //スマートフォンアクセスかどうか判定
       if(isSmartPhoneAccess() == true)
       {  
 　　　　 mapdiv.style.width = SMARTPHONE_STYLE_WIDTH;
@@ -282,3 +300,10 @@ function convertCSVtoArray(str)
     }
     csvDataArray = result;
 }
+//------------------------------------------
+// ウインドウサイズが変更したとき，
+// GoogleMap の高さを自動調整します.
+//------------------------------------------
+$(window).resize(function () {
+   $("#map-canvas").css("height", googleMapHeight() + "px");
+});
