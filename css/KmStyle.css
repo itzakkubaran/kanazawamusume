@@ -19,9 +19,8 @@ body{
    margin : 0px;
    z-index : 1;
 }
-/* mapMenuArea */
-#mapMenuArea{
-  position : fixed;
-  bottom : 0px;
-  width : 100%;
+
+/* メニューバーの margin を再調整 */
+#mapMenuArea nav {
+  margin: 0;
 }
