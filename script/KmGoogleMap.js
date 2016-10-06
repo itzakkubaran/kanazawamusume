@@ -65,7 +65,7 @@ var CSV_SECTION_GOODS = 10;                  //かわいい商品（文字列）
 var STORE_KIND_RESTLANT = 1;                 //飲食店
 var STORE_KIND_WAGASHI = 2;                  //和菓子屋
 var STORE_KIND_GOODS = 3;                    //おみあげ・グッズ
-var STORE_KIND_OTHER = 4;　　　              //その他
+var STORE_KIND_OTHER = 4;                    //その他
 
 /* インターバル処理 */
 var timerID;
@@ -83,7 +83,7 @@ var current_lng = DEFAULT_LNG;  //経度
 function OnStartUp()
 {
    //サポートしている場合のみ取得
-　 if(navigator.geolocation)
+   if(navigator.geolocation)
    {
       //ユーザーの位置情報を取得
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -91,7 +91,7 @@ function OnStartUp()
    else
    {
       //許可されていないので、デフォルト値（金沢駅近辺）を中心にマップを表示
-　　　initializeMaps();
+      initializeMaps();
    }     
 }
 //---------------------------
@@ -100,25 +100,25 @@ function OnStartUp()
 function initializeMaps()
 {  
     //CSVファイルから各お店の配置情報を取得
- 　 getCSV(CSV_FILE_NAME);
+    getCSV(CSV_FILE_NAME);
     
     //1秒間隔でCSVファイルの取得を待ち合わせをして、表示
-  　timerID = setInterval("onloadMaps()", DEFAULT_INTERVAL_TIME);
+    timerID = setInterval("onloadMaps()", DEFAULT_INTERVAL_TIME);
 }
 //------------------------------------------
 // マップ読み込み処理
 //------------------------------------------
 function onloadMaps()
 {
-　 //タイムアウトまたはCSVが取得できた場合
+   //タイムアウトまたはCSVが取得できた場合
    if(retryCount > DEFAULT_MAX_COUNT_FOR_CSV_LOAD ||
       csvDataArray.length !=0)
    {
-    　//インターバル時間をクリア
+      //インターバル時間をクリア
       clearInterval(timerID);
       retryCount = 0;
-　　  //googleMapの読み込みを開始
-　　　showGoogleMaps(current_lat, current_lng);
+      //googleMapの読み込みを開始
+      showGoogleMaps(current_lat, current_lng);
       return;
    }
    retryCount++;
@@ -131,9 +131,6 @@ function showGoogleMaps(x, y)
    var mapdiv = document.getElementById("map-canvas");
    var latlng = new google.maps.LatLng(x,y); //中心部の座標をセット
    
-   //表示するマップのスタイルを設定
-   mapdiv = SetMapDivStyle(mapdiv);
-   
    var opts = {
      zoom: DEFAULT_ZOOM,
      center: latlng,
@@ -144,7 +141,7 @@ function showGoogleMaps(x, y)
   var map = new google.maps.Map(mapdiv, opts);
   
   //マーカーを地図上に配置
-　SetMarkerFromCSVData(csvDataArray, map);
+  SetMarkerFromCSVData(csvDataArray, map);
 
 }
 //------------------------------------------
@@ -158,17 +155,17 @@ function SetMarkerFromCSVData(markers, mapObj)
       var storeData = "<div>"
       storeData += "<li>" + "【お店の名前】" + markers[i][CSV_SECTION_STORENAME] + "</li>"; //施設名
       storeData += "<li>" + "【住所】" + markers[i][CSV_SECTION_ADDRESS] + "</li>";         //施設住所
-　　　storeData += "<li>" + "【URL】" + "<a href='" +  markers[i][CSV_SECTION_URL] + "'" + " target='_blank'>";  //URLリンク
+      storeData += "<li>" + "【URL】" + "<a href='" +  markers[i][CSV_SECTION_URL] + "'" + " target='_blank'>";  //URLリンク
       storeData += markers[i][CSV_SECTION_URL] + "</a>";
-　　　storeData += "<li>" + "【お店の紹介】" + markers[i][CSV_SECTION_DETAIL] + "</li>";    //お店の説明
-　　　storeData += "<li>" + "【定休日】 " + markers[i][CSV_SECTION_NOTOPENDAY] + "</li>";   //定休日
+      storeData += "<li>" + "【お店の紹介】" + markers[i][CSV_SECTION_DETAIL] + "</li>";    //お店の説明
+      storeData += "<li>" + "【定休日】 " + markers[i][CSV_SECTION_NOTOPENDAY] + "</li>";   //定休日
       storeData += "<li>" + "【営業時間】" + markers[i][CSV_SECTION_OPENTIME] + "</li>";    //営業時間
       storeData += "<li>" + "【おすすめ商品】" + markers[i][CSV_SECTION_GOODS] + "</li>";   //取り扱い商品 
       storeData += "</div>";
       //緯度、経度を設定
       var latlng = new google.maps.LatLng(markers[i][CSV_SECTION_LAT],markers[i][CSV_SECTION_LNG]);
       //マーカーを作成
-　　　CreateMarker(storeData, latlng, mapObj);
+      CreateMarker(storeData, latlng, mapObj);
    }
 } 
 //------------------------------------------
@@ -180,48 +177,12 @@ function CreateMarker(storeData, latlng, mapObj)
    var marker = new google.maps.Marker({position: latlng, map: mapObj});
    
    //地図上のmarkarがクリックされると詳細情報を表示するイベント登録
-　 google.maps.event.addListener(marker, 'click', function()  {
+   google.maps.event.addListener(marker, 'click', function()  {
       //インフォメーションウィンドウの名前をセット
       infoWindow.setContent(storeData);
-　　　infoWindow.open(mapObj,marker);
+      infoWindow.open(mapObj,marker);
    });
 } 
-//------------------------------------------
-// GoogleMap の高さを取得します.
-//
-// @return GoogleMap の高さ
-//
-// 全体の高さからヘッダとメニューバーを
-// 除いた高さを返します
-//------------------------------------------
-function googleMapHeight()
-{
-   // offset はスクロールバーが表示されないように微調整するために使用されます．
-   var offset        = -3;
-   var headerHeight  = $('#iconTop').height();
-   var menuHeight    = $('#mapMenuArea').height();
-   var windowsHeight = $(window).height();
-   var mapHeight     = windowsHeight - headerHeight - menuHeight + offset;
-  return mapHeight;
-}
-//------------------------------------------
-// GoogleMapの表示スタイルをセットする
-//------------------------------------------
-function SetMapDivStyle(mapdiv)
-{
-   if(mapdiv !=null)
-   {      
-      mapdiv.style.width = DEFAULT_STYLE_WIDTH;
-      mapdiv.style.height = googleMapHeight() + 'px';
-      //スマートフォンアクセスかどうか判定
-      if(isSmartPhoneAccess() == true)
-      {  
-　　　　 mapdiv.style.width = SMARTPHONE_STYLE_WIDTH;
-         mapdiv.style.height = SMARTPHONE_STYLE_HEIGHT;
-      }　
-   }
-   return mapdiv;
-}
 //------------------------------------
 // ユーザー位置情報取得成功処理
 //------------------------------------
@@ -230,10 +191,10 @@ function successCallback(position)
    //緯度をセット
    current_lat = position.coords.latitude;
    //経度をセット
-　 current_lng = position.coords.longitude;
+   current_lng = position.coords.longitude;
    
    //マップを初期化
-　 initializeMaps();
+   initializeMaps();
 }
 //------------------------------------
 // 取得失敗時の処理
@@ -257,25 +218,12 @@ function errorCallback(error)
   }
   initializeMaps(); 
 }
-//---------------------------------------
-// スマートフォンアクセスかどうか判定する
-//---------------------------------------
-function isSmartPhoneAccess()
-{
-   var useragent = navigator.userAgent;
-   //iPhoneもしくはAndroidからのアクセスの場合
-   if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1)
-   {
-       return true;
-   }
-   return false;
-}
 //---------------------------
 // CSVファイルを読み込む
 //---------------------------
 function getCSV(csvfileName)
 {
-　　// HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
+    // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
     var req = new XMLHttpRequest();
     var csvUrl = "./data/" + csvfileName;
     req.onreadystatechange = function(){
@@ -300,10 +248,3 @@ function convertCSVtoArray(str)
     }
     csvDataArray = result;
 }
-//------------------------------------------
-// ウインドウサイズが変更したとき，
-// GoogleMap の高さを自動調整します.
-//------------------------------------------
-$(window).resize(function () {
-   $("#map-canvas").css("height", googleMapHeight() + "px");
-});
