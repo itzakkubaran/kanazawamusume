@@ -25,12 +25,13 @@
     <!-- remodalのJS読み込み -->
     <script src="js/remodal.js"></script>
     <!-- Script -->
+    <script type="text/javascript" src="./script/KmCommonMenu.js"></script>
     <script type="text/javascript" src="./script/KmGoogleMap.js"></script>
     <script type="text/javascript" src="./script/KmModal.js"></script>
     <script type="text/javascript" src="./script/KmMapResize.js"></script>
 </head>
 
-<body onload="OnStartUp(); ResizeforMap();">
+<body onload="LoadMapSetting(); OnStartUp(); ResizeforMap();">
     <!-- アイコン(ヘッダ) -->
     <header class="bar bar-nav">
       <div id="iconTop"></div>
@@ -58,7 +59,7 @@
 
             <div id="menunavi" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#pos-option">位置情報</a></li>
+                    <li><a href="#pos-option">中央位置設定</a></li>
                     <li><a href="#refine-option">絞り込み</a></li>
                     <li><a href="#init-option">初期設定</a></li>
                 </ul>
@@ -69,22 +70,27 @@
     <!-- 以下，モーダル画面の設定 -->
     <div class="remodal-bg"></div>
     <div class="remodal" data-remodal-id="pos-option">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <p>地図の中央位置を設定します</p>
-        <div>
-          <input type="radio" value="default_pos" name="defaultpos" id="radio_default_pos">
-          <label for="radio_default_pos">金沢の中心部（香林坊付近）</label> 
+        <button data-remodal-action="close" class="remodal-close" onClick="loadMapPosSetting();"></button>
+        <p align="left">地図の中央位置を設定します</p>
+        <div id="mapPosMenu">
+          <ul style="list-style-type: none;">
+           <li>
+              <input type="radio" name="pos" value="default_pos" id="radio_default_pos">
+              <label for="radio_default_pos">金沢学生のまち市民交流館</label> 
+           </li>
+           <li>
+              <input type="radio" name="pos" value="kanazawaStation" id="radio_station_pos">
+              <label for="radio_station_pos">金沢駅</label> 
+           </li>
+           <li>
+             <input type="radio" name="pos" value="currentPos" id="radio_current_pos">
+             <label for="radio_current_pos">現在位置</label>
+           </li>
+         </ul>
+　　　　<p align="left">*「現在位置」を選択する場合、「位置情報の通知」の有効化が必要です。</p>
         </div>
-        <div>
-          <input type="radio" value="kanazawaStation" name="kanazawaStation" id="radio_station_pos">
-          <label for="radio_station_pos">金沢駅</label> 
-        </div>
-        <div>
-          <input type="radio" value="currentPosition" name="currentPos" id="radio_current_pos">
-          <label for="radio_current_pos">現在地</label> 
-        </div>
-        <button data-remodal-action="cancel" class="remodal-cancel">キャンセル</button>
-        <button data-remodal-action="confirm" class="remodal-confirm">設定</button>
+        <button data-remodal-action="cancel" class="remodal-cancel" onClick="loadMapPosSetting();">キャンセル</button>
+        <button data-remodal-action="confirm" class="remodal-confirm" onClick="SaveMapPosSetting();ReloadMaps();">設定</button>
     </div>
 
     <div class="remodal-bg"></div>

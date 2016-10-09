@@ -24,3 +24,9 @@ body{
 #mapMenuArea nav {
   margin: 0;
 }
+/* 中央位置設定 */
+#mapPosMenu {
+   text-align: left;
+   padding : 0px;
+   margin : 0px;
+}
