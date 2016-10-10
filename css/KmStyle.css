@@ -5,10 +5,8 @@ body{
 }
 /* iconTop */
 #iconTop{
-   position : fixed;
-   top : 0;
-   left : 0;
    width : 100%;
+   height: 52px;
    background-color : #ffffff;
    background-image : url("../img/logo.png");
    background-size: contain;
@@ -17,7 +15,6 @@ body{
    border : 1px #ffffff solid;
    padding : 0px;
    margin : 0px;
-   z-index : 1;
 }
 
 /* メニューバーの margin を再調整 */

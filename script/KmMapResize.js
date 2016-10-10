@@ -22,8 +22,9 @@ var DEFAULT_FOOTER_HEIGHT_OPEN = 188;   //Open時のfooterの高さ(px)
 //------------------------------------
 $(window).resize(function(){
        //現在のメニューの高さを取得
-       var menuHeight = $('footer').height(); 
-       setMapSize(menuHeight);
+       var headerHeight = $('header').height();
+       var menuHeight   = $('footer').height(); 
+       setMapSize(menuHeight + headerHeight);
 });
 //------------------------------------
 // toggleMenuクリック時の処理
@@ -31,16 +32,16 @@ $(window).resize(function(){
 function onToggleMenuClick()
 {
     //クリック時のメニューの高さを取得
+    var headerHeight = $('header').height();    
     var menuHeight = $('footer').height(); 
     //クリック前の状態を取得
     if(isToggleMenuShown(menuHeight) == true)
     {
         //Close状態でマップをリサイズ
-        setMapSize(DEFAULT_FOOTER_HEIGHT_CLOSE);
+        setMapSize(headerHeight + DEFAULT_FOOTER_HEIGHT_CLOSE);
         return;
     }
-    //Open状態でマップをリサイズ
-    setMapSize(DEFAULT_FOOTER_HEIGHT_OPEN);    
+    setMapSize(headerHeight + DEFAULT_FOOTER_HEIGHT_OPEN);
 }
 //------------------------------------
 // マップ画面のリサイズを行います
@@ -48,10 +49,11 @@ function onToggleMenuClick()
 function ResizeforMap()
 {   
     //現在のメニューサイズを取得
+    var headerHeight = $('header').height();
     var menuHeight = $('footer').height(); 
     
     //Mapサイズを設定
-    setMapSize(menuHeight);
+    setMapSize(menuHeight + headerHeight);
     
     //トップメニューのサイズをセット
     setTopBarSize();
