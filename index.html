@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-    <title>かなざわ娘 | かわいいねマップ</title>
+    <title>かなざわ娘 かわいいね！アプリ| トップ</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
     <link rel="icon" href="icon.png" type="image/png">
@@ -11,7 +11,10 @@
     <!-- No Cache -->
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <!-- StyleSheet -->
+    <meta http-equiv="Expires" content="0">
+    <!-- Scalable -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+　　<!-- StyleSheet -->
     <link href="./css/KmStyle.css" rel="stylesheet" type="text/css">
     <!-- BootstrapのCSS読み込み -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -19,20 +22,24 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="./js/bootstrap.min.js"></script>
+    <!-- Script -->
+    <script type="text/javascript" src="./script/KmMainResize.js"></script>
 </head>
 
-<body id="index">
+<body id="index" onload="setBodySizeForMain();">
     <!-- アイコン(ヘッダ) -->
     <header class="bar bar-nav">
-      <div id="iconTop" style="height: 52px"></div>
+      <div id="iconTop"></div>
     </header>
 
     <main>
-        <img src="img/logo.png" alt="かなざわ娘ロゴ">
-        <ul>
-            <li><button type="button" class="btn btn-primary btn-lg" name="goto-map"
-                 onclick="location.href='map.html'">マップ</button></li>
-        </ul>
+        <div id="mainImg">
+           <img src="img/logo.png" alt="かなざわ娘ロゴ">
+        </div>
+        <div id="mainMenu01">
+         <button type="button" class="btn btn-primary btn-lg" name="goto-map"
+                 onclick="location.href='map.html'">マップ</button>
+        </div>
     </main>
 </body>
 </html>
