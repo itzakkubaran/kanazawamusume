@@ -12,34 +12,53 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    
     <!-- Scalable -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-　　<!-- StyleSheet -->
+　　
+    <!-- StyleSheet -->
     <link href="./css/KmStyle.css" rel="stylesheet" type="text/css">
+    
     <!-- BootstrapのCSS読み込み -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- jquery -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
     <!-- BootstrapのJS読み込み -->
     <script src="./js/bootstrap.min.js"></script>
-    <!-- Script -->
-    <script type="text/javascript" src="./script/KmMainResize.js"></script>
+    <script src="./script/KmMainResize.js"></script>
+
 </head>
 
-<body id="index" onload="setBodySizeForMain();">
-    <!-- アイコン(ヘッダ) -->
-    <header class="bar bar-nav">
-      <div id="iconTop"></div>
-    </header>
-
-    <main>
-        <div id="mainImg">
-           <img src="img/logo.png" alt="かなざわ娘ロゴ">
-        </div>
-        <div id="mainMenu01">
-         <button type="button" class="btn btn-primary btn-lg" name="goto-map"
-                 onclick="location.href='map.html'">マップ</button>
-        </div>
-    </main>
+<body id="mainbody">
+  <!-- メイン部 -->
+　<div id="wrapper">
+      <!--ヘッダ部 -->
+      <div id="header">
+         <div class="mainMenu"> 
+              <img class="mainMenuImg" src="./img/mainlogo.png"></img>
+         </div>
+      </div>
+      <!-- メインコンテンツ -->
+      <div id="main">
+          <!-- 図鑑 -->
+          <div class="mainMenu">
+              <img class="mainMenuImg" src="./img/library_btn.png"></img>
+          </div>
+          <!-- マップ -->
+          <div class="mainMenu" onclick="location.href='map.html'">
+               <img class="mainMenuImg" src="./img/map_btn.png"></img>
+          </div>
+          <!-- かなざわ娘とは ? -->
+          <div class="mainMenu">
+               <img class="mainMenuImg" src="./img/quetion_btn.png"></img>
+          </div>
+      </div>
+  </div>
+  <!-- end of Wrapper-->
+  <!--フッタ部 -->
+  <footer class="mainfooter">
+    <div></div>
+  </footer>
 </body>
 </html>
