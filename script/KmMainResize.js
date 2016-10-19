@@ -39,16 +39,10 @@ function setBodySizeForMain()
     {
        bodyWidth = DEFAULT_PC_WIDTH + "px";
        bodyWidthMath = DEFAULT_PC_WIDTH;
-       var bodyWhite = parseInt(browserWidth, 10) - parseInt(bodyWidth, 10);
-       bodyLeftMargin = bodyWhite > 0 ? (bodyWhite / 2) + "px" : "0px";
+       var bodySpace = parseInt(browserWidth, 10) - parseInt(bodyWidth, 10);
+       bodyLeftMargin = bodySpace > 0 ? (bodySpace / 2) + "px" : "0px";
     }
-    //Bodyサイズの調整
+    //Bodyサイズの調整 //センタリングが有効化されないので、
     $("body").width(bodyWidth);
     $("body").css({"margin-left" : bodyLeftMargin });
-     
-    //Iconメニューボタンの調整
-    $("#iconTop").width(bodyWidth);
-    $("#iconTop").css({"left" : bodyLeftMargin });
-    $("#iconTop").height(DEFAULT_ICON_HEIGHT);
-    $("#iconTop").css({"line-height" : DEFAULT_ICON_HEIGHT + "px"});
 }
