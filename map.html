@@ -39,7 +39,7 @@
 <body onload="LoadMapSetting(); OnStartUp(); ResizeforMap();">
     <!-- アイコン(ヘッダ) -->
     <header class="bar bar-nav">
-      <div id="iconTop"></div>
+      <div id="iconTop" onclick="location.href='index.html'"></div>
     </header>
 
     <!-- 地図のキャンパス -->
@@ -57,16 +57,16 @@
                     <span class="sr-only">メニュー</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand">かわいいね!マップ</span>
+                <span class="navbar-brand">
+                   <img class="mainMenuImg" src="./img/footer_menu_logo.png" />
+                </span>
             </div>
 
             <div id="menunavi" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#pos-option">中央位置設定</a></li>
-                    <li><a href="#refine-option">絞り込み</a></li>
-                    <li><a href="#init-option">初期設定</a></li>
+                    <li><a href="#pos-option"><img class="mainMenuImg" src="./img/footer_pos_icon.png" />位置設定</a></li>
+                    <li><a href="#refine-option"><img class="mainMenuImg" src="./img/footer_filter_icon.png" />絞り込み</a></li>
                 </ul>
             </div>
         </nav>
@@ -101,26 +101,16 @@
     <div class="remodal-bg"></div>
     <div class="remodal" data-remodal-id="refine-option">
         <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>絞り込み</h1>
-        <p>以下のカテゴリのみ表示します．</p>
-        <br>
-        <p>
-            <input type="checkbox" name="refine-option-show-restaurant" value="1" checked="checked">飲食店</input>
-            <input type="checkbox" name="refine-option-show-japanese-sweets" value="1" checked="checked">和菓子</input>
-            <input type="checkbox" name="refine-option-show-souvenirs" value="1" checked="checked">お土産</input>
-        </p>
-        <br>
-        <button data-remodal-action="cancel" class="remodal-cancel">取り消し</button>
-        <button data-remodal-action="confirm" class="remodal-confirm">設定</button>
-    </div>
-
-    <div class="remodal-bg"></div>
-    <div class="remodal" data-remodal-id="init-option">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>初期設定</h1>
-        <p>初期設定を行います</p>
-        <br>
-        <button data-remodal-action="cancel" class="remodal-cancel">取り消し</button>
+        <p align="left">以下のカテゴリのみ表示します</p>
+　　　　<input type="checkbox" name="allcheck" id="select_all_check" value="1" checked="checked">すべて選択</input>
+        <div id="mapPosMenu">
+       　 <ul style="list-style-type: none;">
+            <li><input type="checkbox" name="refine-option-show-restaurant" value="1" checked="checked">飲食店</input></li>
+            <li><input type="checkbox" name="refine-option-show-japanese-sweets" value="1" checked="checked">和菓子</input></li>
+            <li><input type="checkbox" name="refine-option-show-souvenirs" value="1" checked="checked">お土産</input></li>
+          </ul>
+        </div>
+        <button data-remodal-action="cancel" class="remodal-cancel">キャンセル</button>
         <button data-remodal-action="confirm" class="remodal-confirm">設定</button>
     </div>
 </body>
