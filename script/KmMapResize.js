@@ -15,7 +15,7 @@ var DEFAULT_TOP_HEIGHT = 50; //トップメニューの縦幅
 
 /* 読み込み時サイズ */
 var DEFAULT_FOOTER_HEIGHT_CLOSE = 52;   //Close時のfooterの高さ(px)
-var DEFAULT_FOOTER_HEIGHT_OPEN = 188;   //Open時のfooterの高さ(px)
+var DEFAULT_FOOTER_HEIGHT_OPEN = 178;   //Open時のfooterの高さ(px)
 
 //------------------------------------
 // Window Resize時の処理
