@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-    <title>かなざわ娘 | かわいいねマップ</title>
+    <title>KANAVigation | 金沢かわいいマップ</title>
 
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="img/smart-phone-icon.png" type="image/png">
@@ -65,13 +65,12 @@
 
             <div id="menunavi" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#pos-option"><img class="mainMenuImg" src="./img/footer_pos_icon.png" />位置設定</a></li>
-                    <li><a href="#refine-option"><img class="mainMenuImg" src="./img/footer_filter_icon.png" />絞り込み</a></li>
+                    <li><a href="#pos-option"><img class="mainMenuImg" src="./img/footer_pos_icon.png" />中央位置</a></li>
+                    <li><a href="#refine-option"><img class="mainMenuImg" src="./img/footer_filter_icon.png" />表示条件</a></li>
                 </ul>
             </div>
         </nav>
     </footer>
-
     <!-- 以下，モーダル画面の設定 -->
     <div class="remodal-bg"></div>
     <div class="remodal" data-remodal-id="pos-option">
@@ -80,15 +79,15 @@
         <div id="mapPosMenu">
           <ul style="list-style-type: none;">
            <li>
-              <input type="radio" name="pos" value="default_pos" id="radio_default_pos">
+              <input type="radio" name="pos" value="default_pos" id="radio_default_pos" />
               <label for="radio_default_pos">金沢学生のまち市民交流館</label> 
            </li>
            <li>
-              <input type="radio" name="pos" value="kanazawaStation" id="radio_station_pos">
+              <input type="radio" name="pos" value="kanazawaStation" id="radio_station_pos" />
               <label for="radio_station_pos">金沢駅</label> 
            </li>
            <li>
-             <input type="radio" name="pos" value="currentPos" id="radio_current_pos">
+             <input type="radio" name="pos" value="currentPos" id="radio_current_pos" />
              <label for="radio_current_pos">現在位置</label>
            </li>
          </ul>
@@ -97,21 +96,42 @@
         <button data-remodal-action="cancel" class="remodal-cancel" onClick="loadMapPosSetting();">キャンセル</button>
         <button data-remodal-action="confirm" class="remodal-confirm" onClick="SaveMapPosSetting();ReloadMaps();">設定</button>
     </div>
-
     <div class="remodal-bg"></div>
     <div class="remodal" data-remodal-id="refine-option">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <p align="left">以下のカテゴリのみ表示します</p>
-　　　　<input type="checkbox" name="allcheck" id="select_all_check" value="1" checked="checked">すべて選択</input>
+        <button data-remodal-action="close" class="remodal-close" onClick="loadMapNarrowSetting();"></button>
+        <p align="left">地図に表示する「お店の種類」を設定します</p>
         <div id="mapPosMenu">
-       　 <ul style="list-style-type: none;">
-            <li><input type="checkbox" name="refine-option-show-restaurant" value="1" checked="checked">飲食店</input></li>
-            <li><input type="checkbox" name="refine-option-show-japanese-sweets" value="1" checked="checked">和菓子</input></li>
-            <li><input type="checkbox" name="refine-option-show-souvenirs" value="1" checked="checked">お土産</input></li>
-          </ul>
+           <table>
+             <tr>
+               <td>
+                 <input type="checkbox" name="allcheck" id="select_all_check" value="1" checked="true" onClick="OnChkNarrowAllSelect();">すべて表示</input>
+               </td>
+             </tr>
+             <tr>
+               <td>
+                 <img class="mainMenuImg" src="./img/pin_innshoku.png" style="width:20px;Height:20px;"/>
+                 <input type="checkbox" name="refine-option-show-restaurant" id="chk_inshoku" value="1" onClick="OnChkNarrowSelect();">飲食店</input>
+               </td>
+               <td>
+                 <img class="mainMenuImg" src="./img/pin_wagashi.png" style="width:20px;Height:20px;"/>
+                 <input type="checkbox" name="refine-option-show-japanese-sweets" id="chk_wagashi" value="1" onClick="OnChkNarrowSelect();">和菓子</input>
+               </td>
+             </tr>
+             <tr>
+               <td>
+                 <img class="mainMenuImg" src="./img/pin_omiyage.png" style="width:20px;Height:20px;"/>
+                 <input type="checkbox" name="refine-option-show-souvenirs" id="chk_omiyage" value="1" onClick="OnChkNarrowSelect();">お土産</input>
+               </td>
+               <td>
+                 <img class="mainMenuImg" src="./img/pin_kougei.png" style="width:20px;Height:20px;"/>
+                 <input type="checkbox" name="refine-option-show-kougei" id="chk_kougei" value="1" onClick="OnChkNarrowSelect();">工芸品</input>
+               </td>
+             </tr>
+           </table>
         </div>
-        <button data-remodal-action="cancel" class="remodal-cancel">キャンセル</button>
-        <button data-remodal-action="confirm" class="remodal-confirm">設定</button>
+        <br />
+        <button data-remodal-action="cancel" class="remodal-cancel" onClick="loadMapNarrowSetting();">キャンセル</button>
+        <button data-remodal-action="confirm" class="remodal-confirm" onClick="OnNarrowSettingButton();showMarkerOnMap();">設定</button>
     </div>
 </body>
 </html>

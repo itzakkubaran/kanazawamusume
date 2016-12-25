@@ -1,24 +1,19 @@
 /*
- * KmMainResize.js
+ * KmCommonLoad.js
  *
  * All Rights Reserved, Copyright ITざっくばらん会 ものづくり部 2016 
  * 
- * メイン画面のリサイズ処理を行います。
+ * 画面の読み込み処理を行います。
  * 
- * 2016.10.10 m.asaoka Ver1.0-01 新規作成
+ * 2016.10.02 m.asaoka Ver1.0-01 新規作成
  *
  */
 
 /* デフォルトサイズ定義 */
 var DEFAULT_PC_WIDTH = 480;   //PC横幅サイズ
-var DEFAULT_ICON_HEIGHT = 50; //Iconメニューデフォルト高さ
+var DEFAULT_ICON_HEIGHT = 30; //Iconメニューデフォルト高さ
 var DEFAULT_ADJAST = 66;      
-//------------------------------------
-// Window Resize時の処理
-//------------------------------------
-$(window).resize(function(){
-       setBodySizeForMain(); //リサイズ処理実行
-});
+
 //------------------------------------
 // Bodyサイズを設定します
 //------------------------------------
@@ -39,11 +34,16 @@ function setBodySizeForMain()
     {
        bodyWidth = DEFAULT_PC_WIDTH + "px";
        bodyWidthMath = DEFAULT_PC_WIDTH;
-       var bodySpace = parseInt(browserWidth, 10) - parseInt(bodyWidth, 10);
-       bodyLeftMargin = bodySpace > 0 ? (bodySpace / 2) + "px" : "0px";
+       var bodyWhite = parseInt(browserWidth, 10) - parseInt(bodyWidth, 10);
+       bodyLeftMargin = bodyWhite > 0 ? (bodyWhite / 2) + "px" : "0px";
     }
-    //Bodyサイズの調整 //センタリングが有効化されないので、調整
+    //Bodyサイズの調整
     $("body").width(bodyWidth);
     $("body").css({"margin-left" : bodyLeftMargin });
-        
+     
+    //Iconメニューボタンの調整
+    $("#iconTop").width(bodyWidth);
+    $("#iconTop").css({"left" : bodyLeftMargin });
+    $("#iconTop").height(DEFAULT_ICON_HEIGHT);
+    $("#iconTop").css({"line-height" : DEFAULT_ICON_HEIGHT + "px"});
 }
