@@ -1,10 +1,12 @@
 /*
  * KmCollections.js(図鑑生成処理) 
  *
- * All Rights Reserved, Copyright ITざっくばらん会 ものづくり部 2016 
+ * All Rights Reserved, Copyright ITざっくばらん会 ものづくり部 2016 - 2017 
  * 
  * 2016.11.20 s.kaji 	Ver1.0-01 新規作成
  * 2016.11.27 m.asaoka	Ver1.0-02 図鑑生成機能を追加
+ * 2016.12.27 s.kaji	Ver1.0-03 読み込んだCSVファイルから図鑑生成、表示
+ * 2017.01.03 m.asaoka  Ver1.0-04 GoogleMapアプリへのナビゲーション機能追加
  */
 
 /* CSVデータ読み込み処理 */
@@ -22,7 +24,7 @@ var DIALOG_SECTION_LNG = 6;             //経度(地図表示用）
 var DIALOG_SECTION_DETAIL = 7;          //紹介記事
 var DIALOG_SECTION_NOTOPENDAY = 8;      //定休日
 var DIALOG_SECTION_OPENTIME = 9;        //営業時間
-var DIALOG_SECTION_RECOMENDER = 10;      //推薦人
+var DIALOG_SECTION_RECOMENDER = 10;     //推薦人
 
 /* マップデータのCSVファイルは以下の構成
 /* [セクション0］一意の番号（紐づけ）
@@ -48,7 +50,7 @@ var CSV_SECTION_LAT = 6;              //緯度
 var CSV_SECTION_LNG = 7;              //経度
 var CSV_SECTION_DETAIL = 8;           //紹介
 var CSV_SECTION_NOTOPENDAY = 9;       //定休日
-var CSV_SECTION_OPENTIME = 10;         //営業時間
+var CSV_SECTION_OPENTIME = 10;        //営業時間
 var CSV_SECTION_RECOMENDER = 11;      //推薦人
 
 /*インターバル処理 */
@@ -61,10 +63,10 @@ var DEFAULT_MAX_COUNT_FOR_CSV_LOAD = 10;  //最大読み込み回数（最大10秒）
 var MAPZOOM = 18;		//マップズーム率
 
 /**
-* 画面ロード時の処理
+* HTML読み込み終了時の処理
 */
 $(document).ready(function(){
-       OnStartUp();
+    OnStartUp();
 });
 /**
 * 初期処理
@@ -73,13 +75,6 @@ function OnStartUp()
 {
    //初期化処理実行
    initializeCollections();
-   //Leastセットアップ
-   jQuery('#gallery').least({
-	'random': true,
-	'lazyload': false,
-	'scrollToGallery': false
-	});
-
 }
 /**
 * Collection表示初期化処理
@@ -126,8 +121,6 @@ function showGoogleMap(lat, lng, mapAreaId)
   };
   //マップを表示
   var map = new google.maps.Map(document.getElementById(mapAreaId), mapOptions);
-  //ToDo:位置に中心位置にピンを立てる★
-  
 }
 /**
 * CSVファイル取得処理
@@ -178,58 +171,88 @@ function onClickNavigateButton(lat, lng) {
 * コレクション一覧作成（least）
 */
 function setCollections(){
-    // Element with data-caption
-    // csvDataArray[i][CSV_SECTION_COLLECTIONS];       //商品名
-    // csvDataArray[i][CSV_SECTION_PHOTONAME];         //写真ファイル
-    // csvDataArray[i][CSV_SECTION_COLLECTIONTYPE];    //商品の種類
-    // csvDataArray[i][CSV_SECTION_STORENAME];         //お店データ
-    // csvDataArray[i][CSV_SECTION_ADDRESS];           //住所
-    // csvDataArray[i][CSV_SECTION_LAT];               //緯度
-    // csvDataArray[i][CSV_SECTION_LNG];               //経度
-    // csvDataArray[i][CSV_SECTION_DETAIL];            //紹介情報
-    // csvDataArray[i][CSV_SECTION_NOTOPENDAY];        //定休日
-    // csvDataArray[i][CSV_SECTION_OPENTIME];          //営業時間
-    // csvDataArray[i][CSV_SECTION_RECOMENDER];        //推薦人
     var collectionData = "";
     var groupName = "";
     for (var i = 1; i < csvDataArray.length - 1; i++) {
-        // add group for shuffle.js (data-groups='[\"group**\"]')
         groupName = "group" + csvDataArray[i][CSV_SECTION_COLLECTIONTYPE];
-        //collectionData += "<li>";
         collectionData += "<li data-groups='[\"" + groupName + "\"]'>";
-        collectionData += "<a href='./media/" + csvDataArray[i][CSV_SECTION_PHOTONAME] + "' title='" + csvDataArray[i][CSV_SECTION_COLLECTIONS] + "' data-subtitle='" + csvDataArray[i][CSV_SECTION_STORENAME] + "' data-caption='<strong>" + csvDataArray[i][CSV_SECTION_STORENAME] + "</strong> " + csvDataArray[i][CSV_SECTION_COLLECTIONS] + "'>";
+        collectionData += "<a href='./media/" + csvDataArray[i][CSV_SECTION_PHOTONAME] +
+            "' title='" + csvDataArray[i][CSV_SECTION_COLLECTIONS] + 
+            "' data-subtitle='" + csvDataArray[i][CSV_SECTION_STORENAME] + 
+            "' data-caption='<strong>" + csvDataArray[i][CSV_SECTION_COLLECTIONS] + "</strong>" + 
+            "</br>" +
+            "</br>" +
+            "【お店の情報】" + 
+            "</br> "+ "<strong>" + csvDataArray[i][CSV_SECTION_STORENAME] + "</strong>" +
+            "</br>" + csvDataArray[i][CSV_SECTION_DETAIL] + 
+            "</br>" +
+            "【営業時間】" + 
+            "</br>" + csvDataArray[i][CSV_SECTION_OPENTIME] + 
+            "</br>" +
+            "【定休日】" + 
+            "</br>" + csvDataArray[i][CSV_SECTION_NOTOPENDAY] + 
+            "</br>" +
+            "【住所】" +
+            "</br>" + csvDataArray[i][CSV_SECTION_ADDRESS] +
+            "</br>" + "<div>" +
+            "<input type=\"button\"" +
+            "onclick=\"onClickNavigateButton(" + csvDataArray[i][CSV_SECTION_LAT] + "," + csvDataArray[i][CSV_SECTION_LNG] + ")\" value=\"<<ここに行く>>\">" + 
+            "</div>" + 
+            "'>";
         collectionData += "<img src='./media/" + csvDataArray[i][CSV_SECTION_PHOTONAME] + "' alt='Alt Image Text' />";
         collectionData += "</a>";
         collectionData += "</li>";
     }
 
     $('.least-gallery').append(collectionData);
-    $('.least-gallery').least();
-}
+    var options = {
+        'random': true,
+        'lazyload': true,
+        'scrollToGallery': true,
+        'HiDPI': false
+    };
+    $('.least-gallery').least(options);
+    $('#grid li a img').css('border-radius','100px');
+    $('.least-gallery li a').mouseenter(
+        function(e) {
+            $(this).children('img').css('border-radius','0px');
+        }
+    );
+    $('.least-gallery li a').mouseleave(
+        function(e) {
+            $(this).children('img').css('border-radius','100px');
+        }
+    );
+    $('.least-gallery li a').click(
+        function(e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 500);
+        }
+    );
+}  
 
 /**
 * 並び替えの設定（shuffle）
 */
 function setSorting() {
-    var $grid = $('#grid');
-    $grid.shuffle({
+    $('#grid').shuffle({
         group: 'all',
         speed: 300,
         easing: 'ease-in-out'
     });
-    $('#btn li').on('click', function() {
+    $('#sort li').on('click', function() {
         var $this = $(this),
         group = $this.data('group');
 
-        $('#btn .active').removeClass('active');
+        $('#sort .active').removeClass('active');
         $this.addClass('active');
-
+        
         if(group != 'all'){
-            $grid.shuffle('shuffle', function($el, shuffle) {
+            $('#grid').shuffle('shuffle', function($el, shuffle) {
                 return group.indexOf($el.data('groups')) > -1
             });
         }else{
-                $grid.shuffle( 'shuffle', 'all' );
+            $('#grid').shuffle( 'shuffle', 'all' );
         }
     });
 }

@@ -13,12 +13,15 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <!-- StyleSheet -->
-    <link href="./css/KmStyle.css" rel="stylesheet" type="text/css">
     <!-- BootstrapのCSS読み込み -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- remodal の CSS読み込み(モーダルウインドウを簡便に実現) -->
     <link rel="stylesheet" href="css/remodal.css">
     <link rel="stylesheet" href="css/remodal-default-theme.css">
+    <!-- least.js 2 CSS file -->
+    <link href="./css/least.min.css" rel="stylesheet" />
+    <!-- KmStyle CSS file -->
+    <link href="./css/KmStyle.css" rel="stylesheet" type="text/css">
     <!-- google maps -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbAKj450-wT4MWRPiEP_iqXYnR7DQcgeA"></script>
     <!-- jQuery library -->
@@ -30,58 +33,28 @@
     <!-- Script -->
     <script type="text/javascript" src="./script/KmCommonMenu.js"></script>
     <script type="text/javascript" src="./script/KmCollection.js"></script>
-    <script type="text/javascript" src="./script/KmCollectionResize.js"></script>
     <script type="text/javascript" src="./script/KmModal.js"></script>
     <!-- least -->
     <!-- Responsive viewport for smartphone devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- least.js 2 CSS file -->
-    <link href="./css/least.min.css" rel="stylesheet" />
     <!-- least.js library -->
     <script src="./js/libs/least/least.min.js"></script>
     <!-- shuffle -->
     <script src="./js/jquery.shuffle.min.js"></script>
-    <style>
-        ul{
-            margin:0;
-            padding:0;
-            list-style-type:none;
-        }
-        li{
-            margin:0;
-            padding:0;
-        }
-        #btn{
-            overflow:hidden;
-            margin:10px 0;
-        }
-        #btn li{
-            padding:10px;
-            margin-right:5px;
-            float:left;
-            cursor:pointer;
-            -moz-border-radius:3px;
-            -ms-border-radius:3px;
-            -o-border-radius:3px;
-            -webkit-border-radius:3px;
-            border-radius:3px;
-        }
-        #btn li.active{
-            background-color:#D4D4C3;
-        }
-    </style>
 </head>
 
-<body onload="ResizeforCollection();">
+<body>
     <!-- アイコン(ヘッダ) -->
     <header class="bar bar-nav">
-      <div id="iconTop" onclick="location.href='index.html'"></div>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="iconTop" onclick="location.href='index.html'"></div>
+        </nav>
     </header>
 
     <!--コレクションのフィールド -->
-    <div id="collectionFields">
-    	<!-- Least Gallery -->
-    	<section id="least">
+    <div id="collectionFields" style="margin-top:60px; width:100%;">
+        <!-- Least Gallery -->
+        <section id="least">
            <!-- Least Gallery: Fullscreen Preview -->
            <div class='least-preview'></div>
            <!-- Least Gallery: Thumbnails -->
@@ -92,24 +65,24 @@
     <!-- メニュー -->
     <footer class="bar bar-tab" id="mapMenuArea">
         <!-- トグルメニューを実現するために必要な記述 -->
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-fixed-bottom">
             <div class="navbar-header">
                 <button type="button" 
                         class="navbar-toggle" 
                         data-toggle="collapse" 
-                        data-target="#menunavi" 
-                        onclick="onToggleMenuClick();">
+                        data-target="#menunavi">
+                        <!--onclick="onToggleMenuClick();">-->
                     <span class="sr-only">メニュー</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <span class="navbar-brand">
-                   <img class="mainMenuImg" src="./img/footer_menu_logo.png" />
+                   <img class="mainMenuImg" src="./img/footer_menu_search.png" />
                 </span>
             </div>
 
             <div id="menunavi" class="collapse navbar-collapse">
-    	     <ul class="nav navbar-nav" id="btn">
+    	     <ul class="nav navbar-nav" id="sort">
                 <li data-group="all" class="active alpha">すべて表示</li>
         	<!-- 飲食店 -->
                 <li data-group="group1" class="alpha">
@@ -118,8 +91,12 @@
        		<li data-group="group2" class="alpha">
                    <img class="mainMenuImg" src="./img/pin_wagashi.png" style="width:20px;Height:20px;"/>和菓子
                 </li>
-        	<li data-group="group3" class="alpha">お土産</li>
-       	        <li data-group="group4" class="alpha">工芸品</li>
+        	<li data-group="group3" class="alpha">
+		   <img class="mainMenuImg" src="./img/pin_omiyage.png" style="width:20px;Height:20px;"/>お土産
+                </li>
+       	        <li data-group="group4" class="alpha">
+                   <img class="mainMenuImg" src="./img/pin_kougei.png" style="width:20px;Height:20px;"/>工芸品
+                </li>
    	      </ul>
             </div>
         </nav>
