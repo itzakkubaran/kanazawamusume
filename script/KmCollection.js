@@ -180,21 +180,21 @@ function setCollections(){
             "' title='" + csvDataArray[i][CSV_SECTION_COLLECTIONS] + 
             "' data-subtitle='" + csvDataArray[i][CSV_SECTION_STORENAME] + 
             "' data-caption='<strong>" + csvDataArray[i][CSV_SECTION_COLLECTIONS] + "</strong>" + 
-            "</br>" +
-            "</br>" +
+            "<br />" +
+            "<br />" +
             "ÅyÇ®ìXÇÃèÓïÒÅz" + 
-            "</br> "+ "<strong>" + csvDataArray[i][CSV_SECTION_STORENAME] + "</strong>" +
-            "</br>" + csvDataArray[i][CSV_SECTION_DETAIL] + 
-            "</br>" +
+            "<br />"+ "<strong>" + csvDataArray[i][CSV_SECTION_STORENAME] + "</strong>" +
+            "<br />" + csvDataArray[i][CSV_SECTION_DETAIL] + 
+            "<br />" +
             "Åyâcã∆éûä‘Åz" + 
-            "</br>" + csvDataArray[i][CSV_SECTION_OPENTIME] + 
-            "</br>" +
+            "<br />" + csvDataArray[i][CSV_SECTION_OPENTIME] + 
+            "<br />" +
             "ÅyíËãxì˙Åz" + 
-            "</br>" + csvDataArray[i][CSV_SECTION_NOTOPENDAY] + 
-            "</br>" +
+            "<br />" + csvDataArray[i][CSV_SECTION_NOTOPENDAY] + 
+            "<br />" +
             "ÅyèZèäÅz" +
-            "</br>" + csvDataArray[i][CSV_SECTION_ADDRESS] +
-            "</br>" + "<div>" +
+            "<br />" + csvDataArray[i][CSV_SECTION_ADDRESS] +
+            "<br />" + "<div>" +
             "<input type=\"button\"" +
             "onclick=\"onClickNavigateButton(" + csvDataArray[i][CSV_SECTION_LAT] + "," + csvDataArray[i][CSV_SECTION_LNG] + ")\" value=\"<<Ç±Ç±Ç…çsÇ≠>>\">" + 
             "</div>" + 
