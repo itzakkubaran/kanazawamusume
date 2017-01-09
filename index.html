@@ -2,8 +2,11 @@
 <html lang="ja">
 
 <head>
-    <title>かなざわ娘 かわいいね！アプリ| トップ</title>
+    <title>KANAVigation|トップ</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!-- 情報発信 -->
+    <meta name="author" content="かなざわ娘 ITざっくばらん会 KANAVigation 作成プロジェクト">
+　　<meta name="descpription" content="金沢市の「かわいい」をナビケーションする「かなざわ娘」のアプリケーションです。">　　<meta name="keywords" content="金沢市,女子大生,かわいい,商品,女の子,お土産,ITざっくばらん会,かなざわ娘">
 
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="img/smart-phone-icon.png" type="image/png">
@@ -26,23 +29,32 @@
     
     <!-- BootstrapのJS読み込み -->
     <script src="./js/bootstrap.min.js"></script>
+    <!-- 画面用カスタマイズスクリプト -->
     <script src="./script/KmMainResize.js"></script>
+    <!-- 読み込み用スクリプト -->
+    <script src="./script/KmMainLoad.js"></script>
+    <!-- Add to homescreen -->
+    <script src="./js/addtohomescreen.js"></script>
+    <link href="./css/addtohomescreen.css" rel="stylesheet" type="text/css">
 
 </head>
 
-<body id="mainbody">
+<body id="mainbody" onload="setBodySizeForMain();onloadShowBalloon();">
   <!-- メイン部 -->
 　<div id="wrapper">
       <!--ヘッダ部 -->
       <div id="header">
          <div class="mainMenu"> 
               <img class="mainMenuImg" src="./img/mainlogo.png"></img>
+	      <br />
+              <br />
+              <div style="text-align:center;">かなざわ娘が見つけた <br />金沢のかわいいをまとめてご案内！</div>
          </div>
       </div>
       <!-- メインコンテンツ -->
       <div id="main">
           <!-- 図鑑 -->
-          <div class="mainMenu">
+          <div class="mainMenu" onclick="location.href='collections.html'">
               <img class="mainMenuImg" src="./img/library_btn.png"></img>
           </div>
           <!-- マップ -->
@@ -50,15 +62,11 @@
                <img class="mainMenuImg" src="./img/map_btn.png"></img>
           </div>
           <!-- かなざわ娘とは ? -->
-          <div class="mainMenu">
+          <div class="mainMenu" onclick="location.href='caption.html'">
                <img class="mainMenuImg" src="./img/quetion_btn.png"></img>
           </div>
       </div>
   </div>
   <!-- end of Wrapper-->
-  <!--フッタ部 -->
-  <footer class="mainfooter">
-    <div></div>
-  </footer>
 </body>
 </html>

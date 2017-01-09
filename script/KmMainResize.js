@@ -42,7 +42,8 @@ function setBodySizeForMain()
        var bodySpace = parseInt(browserWidth, 10) - parseInt(bodyWidth, 10);
        bodyLeftMargin = bodySpace > 0 ? (bodySpace / 2) + "px" : "0px";
     }
-    //Bodyサイズの調整 //センタリングが有効化されないので、
+    //Bodyサイズの調整 //センタリングが有効化されないので、調整
     $("body").width(bodyWidth);
     $("body").css({"margin-left" : bodyLeftMargin });
+        
 }
