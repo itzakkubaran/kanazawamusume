@@ -1,0 +1,294 @@
+﻿/* Body */
+body{
+  padding : 0px;
+  margin : 0px;
+}
+/************************************/
+/*  collections.html
+/************************************/
+/* least */
+#least .least-preview article {
+  text-align: center;
+  font-size: 18px;
+  line-height: 30px;
+}
+#least .least-gallery li a::before {
+  content: attr(data-subtitle);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+  letter-spacing: 1px;
+  color: white;
+  text-shadow: 1px 1px 1px #666666;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 175px;
+  font-weight: 200;
+  width: 240px;
+  height: 150px;
+  background: black;
+  background: rgba(0, 0, 0, 0.5);
+}
+#least .least-gallery li a::after {
+  content: attr(title);
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  z-index: 2;
+  overflow: hidden;
+  margin: -30px 0 0 0;
+  border-bottom: 2px solid;
+  border-color: white;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px #666666;
+  letter-spacing: 1px;
+  color: white;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  /* 1行対応 */
+  max-height:30px;
+  overflow:hidden;
+}
+#least .least-gallery li a:hover:before {
+  font-size: 15px;
+}
+#least .least-gallery li a:hover:after {
+  font-size: 20px;
+  /* 1行対応 */
+  max-height:30px;
+  overflow:hidden;
+}
+section li .overLayer, section li .infoLayer {
+    height: 150px;
+    width: 240px;
+    border-radius:10px;
+    border: 5px solid #FFF;
+}
+section li infoLayer ul li {
+    padding: 5px 0 0;
+}
+li#fullPreview {
+    background: #100f1a;
+}
+li#fullPreview .fullCaption {
+    /* color: #696969; */
+}
+
+/* shuffle */
+ul{
+    margin:0;
+    padding:0 0 0 10px;
+    list-style-type:none;
+}
+li{
+    margin:0;
+    padding:0;
+}
+#sort{
+    overflow:hidden;
+    margin:10px 0;
+}
+#sort li{
+    padding:10px;
+    margin-right:5px;
+    float:left;
+    cursor:pointer;
+    -moz-border-radius:3px;
+    -ms-border-radius:3px;
+    -o-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+#sort li:hover {
+    background-color:#D4D4C3;
+}
+#sort li.active{
+    background-color:#f77777;
+}
+
+/************************************/
+/*  map.html
+/************************************/
+/* iconTop */
+#iconTop{
+   width: 100%;
+   height: 52px;
+   background-color : #FBEFEF;
+   background-image : url("../img/menulogo.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center center;
+   border : 1px #FBEFEF solid;
+   padding : 0px;
+   margin : 0px;
+}
+/* メニューバーの margin を再調整 */
+#mapMenuArea nav {
+  margin: 0;
+  background-color : #FBEFEF;
+  font-color: #e8343d;
+}
+.navbar-default {
+  background-color: #FBEFEF;
+}
+.navbar-default .navbar-brand {
+  color: ##e8343d;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #e8343d;
+}
+.navbar-default .navbar-text {
+  color: #f5cbcb;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #e8343d;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #e8343d;
+  background-color: #e8343d;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle {
+  border-color: #e8343d;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #e8343d;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #e8343d;
+}
+.navbar-default .navbar-link {
+  color: #e8343d;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffffff;
+}
+
+/* 位置設定 */
+#mapPosMenu{
+   text-align: left;
+   padding : 0px;
+   margin : 0px;
+}
+/************************************/
+/*  caption.html
+/************************************/
+#captionContents{
+    margin:0 auto;
+    padding:0px;
+    max-width:65%;
+}
+
+.captionImg{
+     max-width: 60%;
+     height: auto;
+     width /***/:auto;
+}
+.captionMenuImg{
+     max-width: 60%;
+     height: auto;
+     width /***/:auto;
+}
+/************************************/
+/*  index.html
+/************************************/
+/* メイン画面Body設定 */
+#mainbody{
+    margin: 0 auto;
+    position:relative;
+    min-height:100%;
+    overflow: hidden;
+    background-image: url("../img/bg.jpg");
+    background-size: 100%;
+}
+/* メイン画面Wrapper設定 */
+#wrapper {
+    width: 100%;
+    height: 100%;
+    margin:0 auto;
+    position: relative;
+}
+/* メイン画面Header部設定 */
+#header{
+    margin:0 auto;
+    padding:0px;
+    min-width:100%;
+    position : relative;
+}
+/* メイン画面Main部設定 */
+#main{
+    margin:0 auto;
+    padding:0px;
+    position : relative;
+}
+.mainMenu{
+     clear : both;
+     position : relative;
+     text-align : center;
+     padding : 0px;
+     margin  : 0 auto;
+     max-width : 70%;
+}    
+.mainMenuImg{
+     max-width: 100%;
+     height: auto;
+     width /***/:auto;
+}
+.mainfooter{
+   width: 100%;
+   height:52px;
+   background-image : url("../img/footer.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center center;
+   padding : 0px;
+   margin : 0px;
+}
+/************************************/
+/* @media定義
+/************************************/
+@media (max-width: 767px) {
+  /* Map画面メニュー設定 */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #e8343d;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #e8343d;
+    background-color: #ffffff;
+  }
+  /* index画面 footer設定 */
+  
+
+}
+
